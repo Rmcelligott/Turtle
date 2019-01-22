@@ -1,0 +1,7 @@
+C:\Users\RobertPC\source\repos\Turtle\Turtle\obj\Debug\Turtle.csprojAssemblyReference.cache
+C:\Users\RobertPC\source\repos\Turtle\Turtle\obj\Debug\Turtle.csproj.CoreCompileInputs.cache
+C:\Users\RobertPC\source\repos\Turtle\Turtle\bin\Debug\Turtle.exe.config
+C:\Users\RobertPC\source\repos\Turtle\Turtle\bin\Debug\Turtle.exe
+C:\Users\RobertPC\source\repos\Turtle\Turtle\bin\Debug\Turtle.pdb
+C:\Users\RobertPC\source\repos\Turtle\Turtle\obj\Debug\Turtle.exe
+C:\Users\RobertPC\source\repos\Turtle\Turtle\obj\Debug\Turtle.pdb
