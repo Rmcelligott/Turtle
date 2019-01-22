@@ -16,10 +16,11 @@ namespace Turtle
             ExitGame();
         }
 
-        private static void ExitGame()
+        public static void ExitGame()
         {
             Console.Write("Press <Enter> to exit... ");
-            while (Console.ReadKey().Key != ConsoleKey.Enter) { }            
+            while (Console.ReadKey().Key != ConsoleKey.Enter) { }
+            Environment.Exit(0);
         }
     }
 
@@ -89,7 +90,8 @@ namespace Turtle
         {
             try
             {
-                var xml = XDocument.Load(@"C:\Game\GameConfig.xml");
+                //var xml = XDocument.Load(@"C:\Game\GameConfig.xml");
+                var xml = XDocument.Load(@"GameConfig.xml");
                 Height = int.Parse(xml.Root.Attribute("height").Value);
                 Width = int.Parse(xml.Root.Attribute("width").Value);
                 Start = BuildLocationFromElement(xml.Root.Element("start"));
@@ -102,7 +104,8 @@ namespace Turtle
             }
             catch(Exception e)
             {
-
+                Console.WriteLine("Error Parsing Game Settings File");
+                Program.ExitGame();
             }
  
         }
@@ -127,18 +130,27 @@ namespace Turtle
 
         public ActionList()
         {
-            Moves = new List<IAction>();
-            string[] moveStrings = System.IO.File.ReadAllText(@"C:\Game\MoveList.txt").Split(',');
-            foreach(var moveString in moveStrings)
+            try
             {
-                if (moveString.ToLower() == "m")
+                Moves = new List<IAction>();
+                //string[] moveStrings = System.IO.File.ReadAllText(@"C:\Game\MoveList.txt").Split(',');
+                string[] moveStrings = System.IO.File.ReadAllText(@"MoveList.txt").Split(',');
+                foreach (var moveString in moveStrings)
                 {
-                    Moves.Add(new Move());
+                    if (moveString.ToLower() == "m")
+                    {
+                        Moves.Add(new Move());
+                    }
+                    if (moveString.ToLower() == "r")
+                    {
+                        Moves.Add(new Rotate());
+                    }
                 }
-                if (moveString.ToLower() == "r")
-                {
-                    Moves.Add(new Rotate());
-                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error Parsing Move List File");
+                Program.ExitGame();
             }
         }
     }

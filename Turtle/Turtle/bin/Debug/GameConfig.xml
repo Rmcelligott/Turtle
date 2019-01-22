@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<game height="5" width="5">
+    <start x="1" y="1" facing="North"></start>
+    <end x="3" y="3"></end>
+    <mine x="2" y="2"></mine>
+    <mine x="3" y="2"></mine>
+</game>
