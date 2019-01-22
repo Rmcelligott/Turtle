@@ -10,14 +10,17 @@ namespace Turtle
     class Program
     {
         public static void Main(string[] args)
-        {
-            
+        {            
             GameEngine Engine = new GameEngine(new GameSettings(),new ActionList());
             Engine.RunGame();
+            ExitGame();
+        }
 
+        private static void ExitGame()
+        {
             Console.Write("Press <Enter> to exit... ");
-            while (Console.ReadKey().Key != ConsoleKey.Enter) { }
-        }       
+            while (Console.ReadKey().Key != ConsoleKey.Enter) { }            
+        }
     }
 
     public class GameEngine
@@ -84,17 +87,24 @@ namespace Turtle
         
         public GameSettings()
         {
-
-            var xml = XDocument.Load(@"C:\Game\GameConfig.xml");
-            Height = int.Parse(xml.Root.Attribute("height").Value);
-            Width = int.Parse(xml.Root.Attribute("width").Value);
-            Start = BuildLocationFromElement(xml.Root.Element("start"));
-            End = BuildLocationFromElement(xml.Root.Element("end"));
-            Mines = new List<Location>();
-            foreach (var mine in xml.Root.Elements("mine"))
+            try
             {
-                Mines.Add(BuildLocationFromElement(mine));
+                var xml = XDocument.Load(@"C:\Game\GameConfig.xml");
+                Height = int.Parse(xml.Root.Attribute("height").Value);
+                Width = int.Parse(xml.Root.Attribute("width").Value);
+                Start = BuildLocationFromElement(xml.Root.Element("start"));
+                End = BuildLocationFromElement(xml.Root.Element("end"));
+                Mines = new List<Location>();
+                foreach (var mine in xml.Root.Elements("mine"))
+                {
+                    Mines.Add(BuildLocationFromElement(mine));
+                }
             }
+            catch(Exception e)
+            {
+
+            }
+ 
         }
 
         private Location BuildLocationFromElement(XElement element)
