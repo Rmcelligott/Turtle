@@ -43,6 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionList.cs" />
+    <Compile Include="Actions\IAction.cs" />
+    <Compile Include="Actions\Move.cs" />
+    <Compile Include="Actions\Rotate.cs" />
+    <Compile Include="GameEngine.cs" />
+    <Compile Include="GameSettings.cs" />
+    <Compile Include="Location.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
